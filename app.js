@@ -1,3 +1,10 @@
+// var http = require('http');
+
+// http.createServer(function (req, res) {
+    // res.writeHead(200, {'Content-Type': 'text/html'});
+    // res.end('Hello World!');
+// }).listen(8080);
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,7 +14,7 @@ var bodyParser = require('body-parser');
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/nodetest1');
+mongoose.connect('mongodb://localhost:27017/worldbuilder');
 
 var routes = require('./routes/routes');
 var users = require('./routes/users');
@@ -42,15 +49,18 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handler
-// app.use(function(err, req, res, next) {
-  // // set locals, only providing error in development
-  // res.locals.message = 'pizza';
-  // res.locals.error = req.app.get('env') === 'development' ? err : {};
+//error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = 'pizza';
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  console.log(err);
 
-  // // render the error page
-  // res.status(err.status || 500);
-  // res.render('pages/index');
-// });
+  // render the error page
+  res.status(err.status || 500);
+  res.render('pages/index');
+});
 
 module.exports = app;
+
+app.listen(8080);
