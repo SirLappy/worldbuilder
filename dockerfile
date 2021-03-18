@@ -18,4 +18,14 @@ ADD . .
 # Compile the main app so that it doesn't need to be compiled each startup/entry.
 RUN deno cache main.ts
 
+# need to be root to install denon
+USER root
+#RUN deno install --allow-read --allow-run --allow-write --allow-net -f --unstable https://deno.land/x/denon@v2.2.0/denon.ts
+#RUN deno install -qA -f --unstable https://deno.land/x/denon@2.3.2/denon.ts
+RUN deno install -qAf --unstable https://raw.githubusercontent.com/denosaurs/denon/main/denon.ts
+
+ENTRYPOINT ["/usr/local/bin/denon"]
+
+USER deno
+
 CMD ["run", "--allow-net", "main.ts"]
