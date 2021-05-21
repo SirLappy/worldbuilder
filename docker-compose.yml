@@ -1,0 +1,67 @@
+#version: "1"
+
+services:
+  service_web:
+#    image: nginx:latest
+    container_name: wb_web
+    build: ./wb_app
+#    mem_limit: 800m
+    ports:
+      - "1993:1993"
+    volumes:
+      - ./:/var/www/worldbuilder
+#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#      - ./nginx/sites-available/dash.conf:/etc/nginx/conf.d/default.conf
+#    command: [nginx-debug, '-g', 'daemon off;']
+#    networks:
+#      dash-network:
+#        ipv4_address: 10.5.0.5
+#  dash-php:
+#    container_name: dash-php
+#    image: sportsit/dash:php7-fpm
+    #        build:
+    #          context: "./php-fpm/"
+    #          dockerfile: "Dockerfile"
+#    extra_hosts:
+#      - "local.dashplatform.com:10.5.0.5"
+#    volumes:
+#      - ../:/var/www/dash
+#      - /tmp:/tmp
+#      - ~/.ssh:/home/dash/.ssh
+#      - /etc/hosts:/etc/hosts
+#      - ./php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+#      - ./php-fpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
+#    networks:
+#      dash-network:
+#        ipv4_address: 10.5.0.6
+#    environment:
+#      - "DASH_DEV_CONFIG=sit.docker-dev.php"
+#      - 'PHP_IDE_CONFIG=serverName=Dash'
+#      - 'XDEBUG_CONFIG=thisthat'
+#  dash-mariadb:
+#    container_name: dash-mariadb
+#    image: mariadb
+#    ports:
+#      - "8081:3306"
+#    volumes:
+#      - ../:/var/www/dash
+#    environment:
+#      - "MYSQL_ROOT_PASSWORD=dash123"
+#    networks:
+#      dash-network:
+#        ipv4_address: 10.5.0.7
+#  dash-memcached:
+#    container_name: dash-memcached
+#    image: memcached
+#    command: memcached -m 64m
+#    networks:
+#      dash-network:
+#        ipv4_address: 10.5.0.8
+#networks:
+#  dash-network:
+#    driver: bridge
+#    ipam:
+#      config:
+#        - subnet: 10.5.0.0/16
+#          gateway: 10.5.0.1
+
